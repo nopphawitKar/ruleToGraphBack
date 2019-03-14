@@ -48,7 +48,6 @@ router.post('/create', function (req, res) {
 })
 
 router.post('/file/upload',  upload.array('arfffiles'), function (req, res) {
-	// console.log(req.body + "xxx")
   res.json("file recieved" + util.inspect(req.files, false, null, true /* enable colors */));
 })
 module.exports = router;

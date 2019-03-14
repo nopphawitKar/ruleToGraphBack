@@ -52,7 +52,7 @@ app.get('/username/:username', function(req, res, next) {
 	});
 })
 
-app.post('/login/', function (req, res) {
+app.post('/', function (req, res) {
 
 	var password = req.body.password;
 	if(app.locals.password == password){

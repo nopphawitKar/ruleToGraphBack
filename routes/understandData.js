@@ -1,4 +1,4 @@
-var express = require('express');
+﻿var express = require('express');
 var router = express.Router();
 var MongoClient = require('mongodb').MongoClient;
 var uri = "mongodb://nopphawit:21546@cluster0-shard-00-00-yhw5u.mongodb.net:27017,cluster0-shard-00-01-yhw5u.mongodb.net:27017,cluster0-shard-00-02-yhw5u.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin";
