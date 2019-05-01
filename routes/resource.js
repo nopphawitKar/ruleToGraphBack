@@ -13,11 +13,11 @@ const DATABASE_DEMO = "demo";
 // });
 /* GET users listing. */
 router.get('/create', function(req, res, next) {
-	
+
 	MongoClient.connect(uri, function(err, db) {
 		if(err){
 		    console.log(err);
-		}	
+		}
 		// var db = mongoUtil.getDb();
 		// var dbo = db.db(DATABASE_DEMO);
 		var myobj = { name: "Company Incxx", address: "Highway 37" };
@@ -36,11 +36,11 @@ router.get('/create', function(req, res, next) {
 });
 
 router.get('/cre', function(req, res, next) {
-	
+
 	MongoClient.connect(uri, function(err, db) {
 		if(err){
 		    console.log(err);
-		}	
+		}
 		// var db = mongoUtil.getDb();
 		// var dbo = db.db(DATABASE_DEMO);
 		var myobj = { resource: "Company Incxx", address: "Highway 37" };
@@ -59,11 +59,11 @@ router.get('/cre', function(req, res, next) {
 });
 
 router.get('/uploadfile', function(req, res, next) {
-	
+
 	MongoClient.connect(uri, function(err, db) {
 		if(err){
 		    console.log(err);
-		}	
+		}
 		var dbo = db.db("demo");
 		var data = fs.readFileSync("C:\\Users\\katen\\Desktop\\file.txt");
 		var insert_data = {};
@@ -82,11 +82,11 @@ router.get('/uploadfile', function(req, res, next) {
 });
 
 router.get('/readdoc', function(req, res, next) {
-	
+
 	MongoClient.connect(uri, function(err, db) {
 		if(err){
 		    console.log(err);
-		}	
+		}
 		var dbo = db.db("demo");
 
 		dbo.collection("col1").findOne({}, function(err, result) {
@@ -107,7 +107,7 @@ router.get('/readdoc', function(req, res, next) {
 /* GET users listing. */
 router.get('/learning', function(req, res, next) {
 	var theCollection = "smth";
-	
+
 	MongoClient.connect(uri, function(err, db) {
 		db.db("assorule").collection("graphdata").findOne({quizType: "learnability"}, function(err, result){
 			res.json(JSON.parse(result.graphData));
