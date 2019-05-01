@@ -25,17 +25,37 @@ module.exports = {
     return _db;
   },
 
-  insertUser: function(db, collection, data, uniqueItem, res) {
-    _db.db(db).collection(collection).createIndex( {username: "text"}, { unique: true } )
-  	_db.db(db).collection(collection).insertOne(data, function(err, result) {
-  		if (err) {
-        resObj.duplicatedUser = true;
-        res.json(resObj)
-      }else{
-        resObj.message = "new username: " + data.username + " is added";
-        res.json(resObj);
-      }
-	 });
+  insertUser: function(db, collection, data, uniqueItem, res, username) {
+   //  _db.db(db).collection(collection).createIndex( {username: "text"}, { unique: true } )
+  	// _db.db(db).collection(collection).insertOne(data, function(err, result) {
+  	// 	if (err) {
+   //      resObj.duplicatedUser = true;
+   //      res.json(resObj)
+   //    }else{
+   //      resObj.message = "new username: " + data.username + " is added";
+   //      res.json(resObj);
+   //    }
+	 // });
+       _db.db(db).collection(collection).findOne({$or:[{username:username}]},
+        function(err, doc){
+          // assert.equal(err, null);
+          //
+          let response = { sucess: true, msg: "The User Created Successfully"};
+
+          //The User doesn't exist => Add New User
+         if(!doc){
+           _db.db(db).collection(collection).insertOne(data, function(err, result) {
+           	if (err) {
+               res.status(CODE_ERROR).send('Username or Password is not match!')
+             }else{
+               res.json(response);
+             }
+          });
+         }
+         else{
+            res.status(CODE_ERROR).send('Username or Password is not match!')
+         }
+       });
   },
   insertScore: function(db, collection, data, res) {
     _db.db(db).collection(collection).insertOne(data, function(err, result) {
