@@ -67,7 +67,7 @@ router.get('/:userId/getScore', function (req, res) {
   var userId = req.params.userId;
   // var objectUserId = new ObjId(userId);
   const searchToken = {userId: userId};
-  const sort = {timeStamp: -1};
+  const sort = {currentGraph: -1};
   const limit = 1;
   mongoUtil.findMaxOne(DATABASE_USER, COLLECTION_SCORE,searchToken, sort, limit, res );
   // mongoUtil.findOne(DATABASE_USER, COLLECTION_SCORE,searchToken, res );
